@@ -1,42 +1,45 @@
 import { View } from "react-native"
 import type { ReactNode } from "react"
+import { neu } from "./neu"
 
 interface Props {
   children: ReactNode
   style?: Record<string, any>
   inset?: boolean
-  size?: "sm" | "md" | "lg"
+  radius?: number
 }
 
-const shadowSizes = {
-  sm: { darkOffset: 3, lightOffset: 2, radius: 5 },
-  md: { darkOffset: 5, lightOffset: 4, radius: 10 },
-  lg: { darkOffset: 8, lightOffset: 6, radius: 16 },
-}
-
-export default function NeumorphicBox({ children, style, inset = false, size = "md" }: Props) {
-  const s = shadowSizes[size]
-  const bg = "#E8EDF2"
+export default function NeumorphicBox({ children, style, inset = false, radius = neu.radius.lg }: Props) {
+  const s = inset ? neu.shadow.inset : neu.shadow.raised
 
   if (inset) {
     return (
       <View
         style={[
           {
-            backgroundColor: bg,
-            borderRadius: 20,
-            borderWidth: 0.5,
-            borderColor: "rgba(255,255,255,0.3)",
-            shadowColor: "#C8D0D9",
+            backgroundColor: neu.insetBg,
+            borderRadius: radius,
+            shadowColor: neu.dark,
             shadowOffset: { width: s.darkOffset, height: s.darkOffset },
-            shadowOpacity: 0.4,
+            shadowOpacity: s.darkOpacity,
             shadowRadius: s.radius,
-            elevation: s.darkOffset,
+            elevation: s.elevation,
           },
           style,
         ]}
       >
-        {children}
+        <View
+          style={{
+            backgroundColor: neu.insetBg,
+            borderRadius: radius,
+            shadowColor: neu.light,
+            shadowOffset: { width: s.lightOffset, height: s.lightOffset },
+            shadowOpacity: s.lightOpacity,
+            shadowRadius: s.radius,
+          }}
+        >
+          {children}
+        </View>
       </View>
     )
   }
@@ -45,36 +48,113 @@ export default function NeumorphicBox({ children, style, inset = false, size = "
     <View
       style={[
         {
-          backgroundColor: bg,
-          borderRadius: 20,
-          padding: 1,
+          backgroundColor: neu.surface,
+          borderRadius: radius,
+          shadowColor: neu.light,
+          shadowOffset: { width: s.lightOffset, height: s.lightOffset },
+          shadowOpacity: s.lightOpacity,
+          shadowRadius: s.radius,
         },
         style,
       ]}
     >
       <View
         style={{
-          backgroundColor: bg,
-          borderRadius: 20,
-          shadowColor: "#FFFFFF",
-          shadowOffset: { width: -s.lightOffset, height: -s.lightOffset },
-          shadowOpacity: 0.8,
+          backgroundColor: neu.surface,
+          borderRadius: radius,
+          shadowColor: neu.dark,
+          shadowOffset: { width: s.darkOffset, height: s.darkOffset },
+          shadowOpacity: s.darkOpacity,
           shadowRadius: s.radius,
+          elevation: s.elevation,
+        }}
+      >
+        {children}
+      </View>
+    </View>
+  )
+}
+
+export function NeumorphicCircle({
+  children,
+  size = 44,
+  inset = false,
+}: {
+  children: ReactNode
+  size?: number
+  inset?: boolean
+}) {
+  const radius = size / 2
+  const s = inset ? neu.shadow.inset : neu.shadow.flat
+
+  if (inset) {
+    return (
+      <View
+        style={{
+          width: size,
+          height: size,
+          borderRadius: radius,
+          backgroundColor: neu.insetBg,
+          alignItems: "center",
+          justifyContent: "center",
+          shadowColor: neu.dark,
+          shadowOffset: { width: s.darkOffset, height: s.darkOffset },
+          shadowOpacity: s.darkOpacity,
+          shadowRadius: s.radius,
+          elevation: s.elevation,
         }}
       >
         <View
           style={{
-            backgroundColor: bg,
-            borderRadius: 20,
-            shadowColor: "#C8D0D9",
-            shadowOffset: { width: s.darkOffset, height: s.darkOffset },
-            shadowOpacity: 0.5,
+            width: size,
+            height: size,
+            borderRadius: radius,
+            backgroundColor: neu.insetBg,
+            alignItems: "center",
+            justifyContent: "center",
+            shadowColor: neu.light,
+            shadowOffset: { width: s.lightOffset, height: s.lightOffset },
+            shadowOpacity: s.lightOpacity,
             shadowRadius: s.radius,
-            elevation: s.darkOffset + 2,
           }}
         >
           {children}
         </View>
+      </View>
+    )
+  }
+
+  return (
+    <View
+      style={{
+        width: size,
+        height: size,
+        borderRadius: radius,
+        backgroundColor: neu.surface,
+        alignItems: "center",
+        justifyContent: "center",
+        shadowColor: neu.light,
+        shadowOffset: { width: s.lightOffset, height: s.lightOffset },
+        shadowOpacity: s.lightOpacity,
+        shadowRadius: s.radius,
+      }}
+    >
+      <View
+        style={{
+          width: size,
+          height: size,
+          borderRadius: radius,
+          backgroundColor: neu.surface,
+          alignItems: "center",
+          justifyContent: "center",
+          shadowColor: neu.dark,
+          shadowOffset: { width: s.darkOffset, height: s.darkOffset },
+          shadowOpacity: s.darkOpacity,
+          shadowRadius: s.radius,
+          elevation: s.elevation + 1,
+        }}
+      >
+        {children}
       </View>
     </View>
   )

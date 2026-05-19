@@ -1,6 +1,12 @@
 import { Ionicons } from "@expo/vector-icons"
 import { Tabs } from "expo-router"
 import { View } from "react-native"
+import { neu } from "../../components/ui"
+
+const bg = neu.bg
+const dark = neu.dark
+const light = neu.light
+const insetBg = neu.insetBg
 
 export default function Layout() {
   return (
@@ -12,150 +18,57 @@ export default function Layout() {
           width: "88%",
           marginHorizontal: "6%",
           bottom: 18,
-          height: 64,
-          borderRadius: 32,
-          backgroundColor: "#E8EDF2",
+          height: 66,
+          borderRadius: 33,
+          backgroundColor: bg,
           borderTopWidth: 0,
           elevation: 0,
           shadowColor: "transparent",
           shadowOpacity: 0,
         },
         tabBarBackground: () => (
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: "#E8EDF2",
-              borderRadius: 32,
-              margin: 0,
-              shadowColor: "#FFFFFF",
-              shadowOffset: { width: -6, height: -6 },
-              shadowOpacity: 0.8,
-              shadowRadius: 12,
-            }}
-          >
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: "#E8EDF2",
-                borderRadius: 32,
-                shadowColor: "#C8D0D9",
-                shadowOffset: { width: 6, height: 6 },
-                shadowOpacity: 0.6,
-                shadowRadius: 12,
-                elevation: 10,
-              }}
-            />
+          <View style={{ flex: 1, backgroundColor: bg, borderRadius: 33, shadowColor: light, shadowOffset: { width: -7, height: -7 }, shadowOpacity: 0.8, shadowRadius: 15 }}>
+            <View style={{ flex: 1, backgroundColor: bg, borderRadius: 33, shadowColor: dark, shadowOffset: { width: 7, height: 7 }, shadowOpacity: 0.5, shadowRadius: 15, elevation: 12 }} />
           </View>
         ),
-        tabBarActiveTintColor: "#5B7FFF",
-        tabBarInactiveTintColor: "#9BA6B8",
+        tabBarActiveTintColor: neu.accent,
+        tabBarInactiveTintColor: neu.textMuted,
         tabBarLabelStyle: {
           fontSize: 10,
           fontWeight: "700",
           marginTop: -2,
           letterSpacing: 0.3,
+          marginBottom: 4,
         },
         tabBarItemStyle: {
           paddingTop: 6,
         },
       }}
     >
-      <Tabs.Screen
-        name="home"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ focused, color }) => (
-            <NeumorphicTabIcon focused={focused} color={color}>
-              <Ionicons name={focused ? "home" : "home-outline"} size={22} color={color} />
-            </NeumorphicTabIcon>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="notices"
-        options={{
-          title: "Notices",
-          tabBarIcon: ({ focused, color }) => (
-            <NeumorphicTabIcon focused={focused} color={color}>
-              <Ionicons name={focused ? "megaphone" : "megaphone-outline"} size={22} color={color} />
-            </NeumorphicTabIcon>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="event"
-        options={{
-          title: "Events",
-          tabBarIcon: ({ focused, color }) => (
-            <NeumorphicTabIcon focused={focused} color={color}>
-              <Ionicons name={focused ? "calendar" : "calendar-outline"} size={22} color={color} />
-            </NeumorphicTabIcon>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="programs"
-        options={{
-          title: "Programs",
-          tabBarIcon: ({ focused, color }) => (
-            <NeumorphicTabIcon focused={focused} color={color}>
-              <Ionicons name={focused ? "school" : "school-outline"} size={22} color={color} />
-            </NeumorphicTabIcon>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="faculty"
-        options={{
-          title: "Faculty",
-          tabBarIcon: ({ focused, color }) => (
-            <NeumorphicTabIcon focused={focused} color={color}>
-              <Ionicons name={focused ? "people" : "people-outline"} size={22} color={color} />
-            </NeumorphicTabIcon>
-          ),
-        }}
-      />
+      <Tabs.Screen name="home" options={{ title: "Home", tabBarIcon: ({ focused }) => <TabIcon focused={focused} name={focused ? "home" : "home-outline"} /> }} />
+      <Tabs.Screen name="notices" options={{ title: "Notices", tabBarIcon: ({ focused }) => <TabIcon focused={focused} name={focused ? "megaphone" : "megaphone-outline"} /> }} />
+      <Tabs.Screen name="event" options={{ title: "Events", tabBarIcon: ({ focused }) => <TabIcon focused={focused} name={focused ? "calendar" : "calendar-outline"} /> }} />
+      <Tabs.Screen name="programs" options={{ title: "Programs", tabBarIcon: ({ focused }) => <TabIcon focused={focused} name={focused ? "school" : "school-outline"} /> }} />
+      <Tabs.Screen name="faculty" options={{ title: "Faculty", tabBarIcon: ({ focused }) => <TabIcon focused={focused} name={focused ? "people" : "people-outline"} /> }} />
     </Tabs>
   )
 }
 
-function NeumorphicTabIcon({ focused, color, children }: { focused: boolean; color: string; children: React.ReactNode }) {
-  return focused ? (
-    <View
-      style={{
-        width: 44,
-        height: 44,
-        borderRadius: 22,
-        backgroundColor: "#E8EDF2",
-        alignItems: "center",
-        justifyContent: "center",
-        shadowColor: "#FFFFFF",
-        shadowOffset: { width: -3, height: -3 },
-        shadowOpacity: 0.9,
-        shadowRadius: 5,
-      }}
-    >
-      <View
-        style={{
-          width: 44,
-          height: 44,
-          borderRadius: 22,
-          backgroundColor: "#E8EDF2",
-          alignItems: "center",
-          justifyContent: "center",
-          shadowColor: "#C8D0D9",
-          shadowOffset: { width: 3, height: 3 },
-          shadowOpacity: 0.5,
-          shadowRadius: 5,
-          elevation: 4,
-        }}
-      >
-        {children}
+function TabIcon({ focused, name }: { focused: boolean; name: React.ComponentProps<typeof Ionicons>["name"] }) {
+  if (focused) {
+    return (
+      <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: insetBg, alignItems: "center", justifyContent: "center", shadowColor: dark, shadowOffset: { width: -3, height: -3 }, shadowOpacity: 0.35, shadowRadius: 5 }}>
+        <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: insetBg, alignItems: "center", justifyContent: "center", shadowColor: light, shadowOffset: { width: 3, height: 3 }, shadowOpacity: 0.6, shadowRadius: 5, elevation: 2 }}>
+          <Ionicons name={name} size={22} color={neu.accent} />
+        </View>
       </View>
-    </View>
-  ) : (
-    <View style={{ width: 44, height: 44, alignItems: "center", justifyContent: "center" }}>
-      {children}
+    )
+  }
+  return (
+    <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: bg, alignItems: "center", justifyContent: "center", shadowColor: light, shadowOffset: { width: -4, height: -4 }, shadowOpacity: 0.8, shadowRadius: 6 }}>
+      <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: bg, alignItems: "center", justifyContent: "center", shadowColor: dark, shadowOffset: { width: 4, height: 4 }, shadowOpacity: 0.5, shadowRadius: 6, elevation: 5 }}>
+        <Ionicons name={name} size={20} color={neu.textMuted} />
+      </View>
     </View>
   )
 }
