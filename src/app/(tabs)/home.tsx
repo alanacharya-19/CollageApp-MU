@@ -1,10 +1,17 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { ScrollView, View } from "react-native"
+import { HeaderHome, HomeHero, QuickActions, LatestAnnouncements, UpcomingEvents, CurrentCourses } from "../../components/section"
 
-export default function home() {
+export default function HomeScreen() {
   return (
-    <View>
-      <Text>home</Text>
+    <View className="flex-1" style={{ backgroundColor: "#E8EDF2" }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>
+        <HeaderHome />
+        <HomeHero />
+        <QuickActions />
+        <LatestAnnouncements />
+        <CurrentCourses />
+        <UpcomingEvents />
+      </ScrollView>
     </View>
   )
 }

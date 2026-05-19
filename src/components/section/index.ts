@@ -1,0 +1,6 @@
+export { default as HeaderHome } from "./HeaderHome"
+export { default as HomeHero } from "./HomeHero"
+export { default as LatestAnnouncements } from "./LatestAnnouncements"
+export { default as UpcomingEvents } from "./UpcomingEvents"
+export { default as QuickActions } from "./QuickActions"
+export { default as CurrentCourses } from "./CurrentCourses"
