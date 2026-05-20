@@ -18,3 +18,6 @@ export type { Notice } from "./notices"
 
 export { programs } from "./programs"
 export type { Program } from "./programs"
+
+export { faculty } from "./faculty"
+export type { Faculty } from "./faculty"
