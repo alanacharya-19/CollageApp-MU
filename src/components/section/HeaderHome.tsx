@@ -25,7 +25,7 @@ export default function HeaderHome() {
           <CircleIcon size={40} color="#FFFFFF">
             <View className="relative">
               <Ionicons name="notifications-outline" size={20} color="#FFFFFF" />
-              <View className="absolute -top-1.5 -right-1.5 w-4.5 h-4.5 rounded-full items-center justify-center" style={{ backgroundColor: neu.warning }}>
+              <View style={{ position: "absolute", top: -6, right: -6, width: 18, height: 18, borderRadius: 9, alignItems: "center", justifyContent: "center", backgroundColor: neu.error, zIndex: 10 }}>
                 <Text className="text-white text-[9px] font-bold">3</Text>
               </View>
             </View>
