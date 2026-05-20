@@ -15,3 +15,6 @@ export type { Course } from "./courses"
 
 export { notices } from "./notices"
 export type { Notice } from "./notices"
+
+export { programs } from "./programs"
+export type { Program } from "./programs"
