@@ -1,6 +1,6 @@
 import { View, Text } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
-import { NeumorphicCircle } from "../ui"
+import { CircleIcon } from "../ui"
 import { neu } from "../ui"
 import { courses } from "../../sample"
 import { CourseCard } from "../item"
@@ -10,18 +10,20 @@ export default function CurrentCourses() {
     <View className="mt-6 px-5">
       <View className="flex-row items-center justify-between mb-3">
         <View className="flex-row items-center">
-          <NeumorphicCircle size={28}>
-            <Ionicons name="book" size={14} color={neu.textMuted} />
-          </NeumorphicCircle>
+          <CircleIcon size={26} color={neu.royal}>
+            <Ionicons name="book" size={14} color={neu.royal} />
+          </CircleIcon>
           <Text className="text-base font-bold ml-2" style={{ color: neu.text }}>Current Courses</Text>
         </View>
         <View className="flex-row items-center">
-          <Text className="text-xs font-bold" style={{ color: neu.accent }}>All subjects</Text>
-          <Ionicons name="chevron-forward" size={12} color={neu.accent} />
+          <Text className="text-xs font-bold" style={{ color: neu.royal }}>All subjects</Text>
+          <Ionicons name="chevron-forward" size={12} color={neu.royal} />
         </View>
       </View>
       {courses.map((item) => (
-        <CourseCard key={item.id} item={item} />
+        <View key={item.id} className="mb-3">
+          <CourseCard item={item} />
+        </View>
       ))}
     </View>
   )

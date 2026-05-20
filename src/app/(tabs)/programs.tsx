@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { ScrollView, View, Text, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
-import { neu, NeumorphicCircle, NeumorphicBox } from "../../components/ui"
+import { neu, Card, CircleIcon } from "../../components/ui"
 import { ProgramCard } from "../../components/item"
 import { programs } from "../../sample"
 
@@ -19,84 +19,78 @@ export default function ProgramsScreen() {
     <View className="flex-1" style={{ backgroundColor: neu.bg }}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>
         {/* Header */}
-        <View className="flex-row items-center justify-between px-6 pt-14 pb-3">
-          <View>
-            <Text className="text-[11px] font-bold tracking-[2px]" style={{ color: neu.textLight }}>ACADEMIC PROGRAMS</Text>
-            <Text className="text-2xl font-extrabold -mt-0.5" style={{ color: neu.text }}>Our Programs</Text>
+        <View className="px-6 pt-14 pb-4" style={{ backgroundColor: neu.midnight }}>
+          <View className="flex-row items-center justify-between">
+            <View>
+              <Text className="text-[11px] font-bold tracking-[2px]" style={{ color: neu.textLight }}>ACADEMIC PROGRAMS</Text>
+              <Text className="text-2xl font-extrabold -mt-0.5 text-white">Our Programs</Text>
+            </View>
+            <View className="flex-row items-center gap-3">
+              <Pressable>
+                <CircleIcon size={40} color="#FFFFFF">
+                  <Ionicons name="search-outline" size={20} color="#FFFFFF" />
+                </CircleIcon>
+              </Pressable>
+              <Pressable>
+                <CircleIcon size={40} color="#FFFFFF">
+                  <Ionicons name="options-outline" size={20} color="#FFFFFF" />
+                </CircleIcon>
+              </Pressable>
+            </View>
           </View>
-          <View className="flex-row items-center gap-3">
-            <Pressable>
-              <NeumorphicCircle size={40}>
-                <Ionicons name="search-outline" size={20} color={neu.textMuted} />
-              </NeumorphicCircle>
-            </Pressable>
-            <Pressable>
-              <NeumorphicCircle size={40}>
-                <Ionicons name="options-outline" size={20} color={neu.textMuted} />
-              </NeumorphicCircle>
-            </Pressable>
-          </View>
+
+          {/* Filter Chips */}
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mt-4" contentContainerStyle={{ paddingRight: 20 }}>
+            {filters.map((f) => (
+              <Pressable
+                key={f}
+                onPress={() => setActiveFilter(f)}
+                className="mr-3 px-4 py-2 rounded-full"
+                style={{ backgroundColor: activeFilter === f ? neu.royal : "rgba(255,255,255,0.12)" }}
+              >
+                <Text className="text-xs font-bold" style={{ color: activeFilter === f ? "#FFFFFF" : neu.textLight }}>
+                  {f}
+                </Text>
+              </Pressable>
+            ))}
+          </ScrollView>
         </View>
 
         {/* Stats Banner */}
-        <View className="px-5 mt-2">
-          <NeumorphicBox radius={neu.radius.xl}>
-            <View className="p-5">
-              <View className="flex-row items-center mb-4">
-                <View className="w-10 h-10 rounded-2xl items-center justify-center" style={{ backgroundColor: neu.accent + "15" }}>
-                  <Ionicons name="school" size={20} color={neu.accent} />
-                </View>
-                <View className="ml-3">
-                  <Text className="text-sm font-bold" style={{ color: neu.text }}>Explore Programs</Text>
-                  <Text className="text-xs" style={{ color: neu.textMuted }}>Find the right program for your future</Text>
-                </View>
+        <View className="px-5 mt-5">
+          <Card elevated radius={neu.radius.xl}>
+            <View className="flex-row items-center mb-4">
+              <View className="w-10 h-10 rounded-2xl items-center justify-center" style={{ backgroundColor: neu.royal + "10" }}>
+                <Ionicons name="school" size={20} color={neu.royal} />
               </View>
-              <View className="flex-row">
-                <View className="flex-1 items-center py-3 rounded-2xl" style={{ backgroundColor: neu.dark + "15" }}>
-                  <Text className="text-lg font-extrabold" style={{ color: neu.text }}>{programs.length}</Text>
-                  <Text className="text-[10px] font-semibold mt-0.5" style={{ color: neu.textLight }}>Programs</Text>
-                </View>
-                <View className="flex-1 items-center py-3 rounded-2xl mx-2" style={{ backgroundColor: neu.dark + "15" }}>
-                  <Text className="text-lg font-extrabold" style={{ color: neu.text }}>5</Text>
-                  <Text className="text-[10px] font-semibold mt-0.5" style={{ color: neu.textLight }}>Schools</Text>
-                </View>
-                <View className="flex-1 items-center py-3 rounded-2xl" style={{ backgroundColor: neu.dark + "15" }}>
-                  <Text className="text-lg font-extrabold" style={{ color: neu.text }}>685</Text>
-                  <Text className="text-[10px] font-semibold mt-0.5" style={{ color: neu.textLight }}>Seats</Text>
-                </View>
+              <View className="ml-3">
+                <Text className="text-sm font-bold" style={{ color: neu.text }}>Explore Programs</Text>
+                <Text className="text-xs" style={{ color: neu.textMuted }}>Find the right program for your future</Text>
               </View>
             </View>
-          </NeumorphicBox>
+            <View className="flex-row">
+              <View className="flex-1 items-center py-3 rounded-2xl" style={{ backgroundColor: neu.bg }}>
+                <Text className="text-lg font-extrabold" style={{ color: neu.text }}>{programs.length}</Text>
+                <Text className="text-[10px] font-semibold mt-0.5" style={{ color: neu.textLight }}>Programs</Text>
+              </View>
+              <View className="flex-1 items-center py-3 rounded-2xl mx-2" style={{ backgroundColor: neu.bg }}>
+                <Text className="text-lg font-extrabold" style={{ color: neu.text }}>5</Text>
+                <Text className="text-[10px] font-semibold mt-0.5" style={{ color: neu.textLight }}>Schools</Text>
+              </View>
+              <View className="flex-1 items-center py-3 rounded-2xl" style={{ backgroundColor: neu.bg }}>
+                <Text className="text-lg font-extrabold" style={{ color: neu.text }}>685</Text>
+                <Text className="text-[10px] font-semibold mt-0.5" style={{ color: neu.textLight }}>Seats</Text>
+              </View>
+            </View>
+          </Card>
         </View>
-
-        {/* Filter Chips */}
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          className="px-5 mt-5"
-          contentContainerStyle={{ paddingRight: 20 }}
-        >
-          {filters.map((f) => (
-            <Pressable key={f} onPress={() => setActiveFilter(f)} className="mr-3 active:opacity-80">
-              {activeFilter === f ? (
-                <NeumorphicCircle size={36} inset>
-                  <Text className="text-xs font-bold" style={{ color: neu.accent }}>{f}</Text>
-                </NeumorphicCircle>
-              ) : (
-                <NeumorphicCircle size={36}>
-                  <Text className="text-xs font-semibold" style={{ color: neu.textMuted }}>{f}</Text>
-                </NeumorphicCircle>
-              )}
-            </Pressable>
-          ))}
-        </ScrollView>
 
         {/* Program List */}
         <View className="px-5 mt-5">
           <View className="flex-row items-center mb-3">
-            <NeumorphicCircle size={26}>
-              <Ionicons name="layers" size={13} color={neu.textMuted} />
-            </NeumorphicCircle>
+            <CircleIcon size={26} color={neu.royal}>
+              <Ionicons name="layers" size={13} color={neu.royal} />
+            </CircleIcon>
             <Text className="text-sm font-bold ml-2" style={{ color: neu.text }}>
               {activeFilter === "All" ? "All Programs" : activeFilter}
             </Text>
@@ -108,15 +102,15 @@ export default function ProgramsScreen() {
           ))}
 
           {filtered.length === 0 && (
-            <NeumorphicBox radius={neu.radius.xl}>
+            <Card radius={neu.radius.xl}>
               <View className="py-14 items-center">
-                <NeumorphicCircle size={60}>
+                <CircleIcon size={60} color={neu.textLight}>
                   <Ionicons name="school-outline" size={26} color={neu.textLight} />
-                </NeumorphicCircle>
+                </CircleIcon>
                 <Text className="text-sm font-bold mt-4" style={{ color: neu.textMuted }}>No programs found</Text>
                 <Text className="text-xs mt-1" style={{ color: neu.textLight }}>Try a different category</Text>
               </View>
-            </NeumorphicBox>
+            </Card>
           )}
         </View>
       </ScrollView>
