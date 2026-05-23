@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { ScrollView, View, Text, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
-import { neu, Card, CircleIcon } from "../../components/ui"
+import { Card, CircleIcon } from "../../components/ui"
+import { useNeu } from "../../context/ThemeContext"
 import { EventFilterChip, EventHeroCard, EventCard } from "../../components/item"
 import { events } from "../../sample"
 import type { UniversityEvent } from "../../sample"
@@ -18,6 +19,7 @@ const typeMap: Record<string, UniversityEvent["type"]> = {
 }
 
 export default function EventScreen() {
+  const neu = useNeu()
   const [activeFilter, setActiveFilter] = useState("All")
 
   const featured = events.find((e) => e.featured)

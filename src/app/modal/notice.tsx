@@ -1,10 +1,12 @@
 import { ScrollView, View, Text, Pressable } from "react-native"
 import { useRouter, useLocalSearchParams } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
-import { neu, Card, CircleIcon } from "../../components/ui"
+import { Card, CircleIcon } from "../../components/ui"
+import { useNeu } from "../../context/ThemeContext"
 import { notices } from "../../sample"
 
 export default function NoticeDetail() {
+  const neu = useNeu()
   const router = useRouter()
   const { id } = useLocalSearchParams<{ id: string }>()
   const item = notices.find((n) => n.id === id)

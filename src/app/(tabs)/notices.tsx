@@ -1,13 +1,15 @@
 import { useState } from "react"
 import { ScrollView, View, Text, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
-import { neu, Card, CircleIcon } from "../../components/ui"
+import { Card, CircleIcon } from "../../components/ui"
+import { useNeu } from "../../context/ThemeContext"
 import { NoticeCard } from "../../components/item"
 import { notices } from "../../sample"
 
 const filters = ["All", "Examination", "Academic", "Administrative", "General"] as const
 
 export default function NoticesScreen() {
+  const neu = useNeu()
   const [activeFilter, setActiveFilter] = useState("All")
 
   const filtered = notices.filter((n) => {

@@ -1,11 +1,12 @@
 import { View, Text } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { CircleIcon } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 import { courses } from "../../sample"
 import { CourseCard } from "../item"
 
 export default function CurrentCourses() {
+  const neu = useNeu()
   return (
     <View className="mt-6 px-5">
       <View className="flex-row items-center justify-between mb-3">

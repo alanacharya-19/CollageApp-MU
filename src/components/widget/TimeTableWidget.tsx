@@ -1,18 +1,18 @@
 import { View, Text, ScrollView } from "react-native"
 import { Card } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 import { timetable } from "../../sample"
 import type { Day } from "../../sample"
 
 const days: Day[] = ["Mon", "Tue", "Wed", "Thu", "Fri"]
 
-const typeColors: Record<string, string> = {
-  Lecture: neu.royal,
-  Lab: "#8B5CF6",
-  Tutorial: neu.cyan,
-}
-
 export default function TimeTableWidget() {
+  const neu = useNeu()
+  const typeColors: Record<string, string> = {
+    Lecture: neu.royal,
+    Lab: "#8B5CF6",
+    Tutorial: neu.cyan,
+  }
   return (
     <Card radius={neu.radius.lg}>
       <Text className="text-sm font-bold mb-3" style={{ color: neu.text }}>Today's Schedule</Text>

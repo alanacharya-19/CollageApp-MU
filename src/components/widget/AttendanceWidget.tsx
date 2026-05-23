@@ -1,9 +1,10 @@
 import { View, Text } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { Card, CircleIcon } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 
 export default function AttendanceWidget() {
+  const neu = useNeu()
   const pct = 87
   const color = pct >= 85 ? neu.success : pct >= 75 ? neu.warning : neu.error
 

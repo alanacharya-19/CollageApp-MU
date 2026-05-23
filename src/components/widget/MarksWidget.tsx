@@ -1,15 +1,15 @@
 import { View, Text } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { Card, CircleIcon } from "../ui"
-import { neu } from "../ui"
-
-const subjects = [
-  { name: "Data Structures", score: "92/100", grade: "A", color: neu.royal },
-  { name: "Linear Algebra", score: "78/100", grade: "B+", color: neu.warning },
-  { name: "Quantum Mechanics", score: "85/100", grade: "A-", color: neu.cyan },
-]
+import { useNeu } from "../../context/ThemeContext"
 
 export default function MarksWidget() {
+  const neu = useNeu()
+  const subjects = [
+    { name: "Data Structures", score: "92/100", grade: "A", color: neu.royal },
+    { name: "Linear Algebra", score: "78/100", grade: "B+", color: neu.warning },
+    { name: "Quantum Mechanics", score: "85/100", grade: "A-", color: neu.cyan },
+  ]
   return (
     <Card radius={neu.radius.lg}>
       <View className="flex-row items-center mb-3">

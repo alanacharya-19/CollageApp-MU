@@ -1,10 +1,12 @@
 import { ScrollView, View, Text, Pressable } from "react-native"
 import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
-import { neu, Card, CircleIcon } from "../../components/ui"
+import { Card, CircleIcon } from "../../components/ui"
+import { useNeu } from "../../context/ThemeContext"
 import { userProfile } from "../../sample"
 
 export default function ProfileScreen() {
+  const neu = useNeu()
   const router = useRouter()
 
   const menuItems = [

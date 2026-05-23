@@ -1,9 +1,10 @@
 import { ScrollView, View } from "react-native"
-import { neu } from "../../components/ui"
+import { useNeu } from "../../context/ThemeContext"
 import { HeaderHome, HomeHero, QuickActions, LatestAnnouncements, UpcomingEvents, CurrentCourses } from "../../components/section"
 import { AttendanceWidget, MarksWidget, TimeTableWidget } from "../../components/widget"
 
 export default function HomeScreen() {
+  const neu = useNeu()
   return (
     <View className="flex-1" style={{ backgroundColor: neu.bg }}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>

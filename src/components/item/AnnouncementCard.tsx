@@ -1,10 +1,11 @@
 import { View, Text, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 import type { Announcement } from "../../sample"
 
 export default function AnnouncementCard({ item }: { item: Announcement }) {
+  const neu = useNeu()
   return (
     <Pressable className="mr-4 w-72 active:opacity-90">
       <Card>

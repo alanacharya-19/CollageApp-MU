@@ -1,10 +1,12 @@
 import { ScrollView, View, Text, Pressable } from "react-native"
 import { useRouter, useLocalSearchParams } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
-import { neu, Card, CircleIcon } from "../../components/ui"
+import { Card, CircleIcon } from "../../components/ui"
+import { useNeu } from "../../context/ThemeContext"
 import { programs } from "../../sample"
 
 export default function ProgramDetail() {
+  const neu = useNeu()
   const router = useRouter()
   const { id } = useLocalSearchParams<{ id: string }>()
   const item = programs.find((p) => p.id === id)

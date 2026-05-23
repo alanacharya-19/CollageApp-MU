@@ -1,10 +1,12 @@
 import { ScrollView, View, Text, Pressable } from "react-native"
 import { useRouter, useLocalSearchParams } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
-import { neu, Card, CircleIcon } from "../../components/ui"
+import { Card, CircleIcon } from "../../components/ui"
+import { useNeu } from "../../context/ThemeContext"
 import { faculty } from "../../sample"
 
 export default function FacultyDetail() {
+  const neu = useNeu()
   const router = useRouter()
   const { id } = useLocalSearchParams<{ id: string }>()
   const item = faculty.find((f) => f.id === id)

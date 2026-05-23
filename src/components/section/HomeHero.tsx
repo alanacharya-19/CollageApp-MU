@@ -1,9 +1,10 @@
 import { View, Text, TextInput } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 
 export default function HomeHero() {
+  const neu = useNeu()
   return (
     <View className="px-5 mt-4">
       <Card elevated radius={neu.radius.xl}>

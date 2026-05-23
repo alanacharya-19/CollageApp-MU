@@ -1,6 +1,6 @@
 import { View } from "react-native"
 import type { ReactNode } from "react"
-import { neu } from "./neu"
+import { useNeu } from "../../context/ThemeContext"
 
 interface Props {
   children: ReactNode
@@ -11,17 +11,19 @@ interface Props {
   accent?: boolean
 }
 
-export default function Card({ children, style, radius = neu.radius.lg, elevated = false, noShadow = false, accent = false }: Props) {
+export default function Card({ children, style, radius, elevated = false, noShadow = false, accent = false }: Props) {
+  const _neu = useNeu()
+  const r = radius ?? _neu.radius.lg
   return (
     <View
       style={[
         {
-          backgroundColor: neu.card,
-          borderRadius: radius,
+          backgroundColor: _neu.card,
+          borderRadius: r,
           padding: 16,
           overflow: "hidden",
         },
-        noShadow ? neu.shadow.none : elevated ? neu.shadow.elevated : neu.shadow.card,
+        noShadow ? _neu.shadow.none : elevated ? _neu.shadow.elevated : _neu.shadow.card,
         style,
       ]}
     >
@@ -33,7 +35,7 @@ export default function Card({ children, style, radius = neu.radius.lg, elevated
             left: 0,
             right: 0,
             height: 4,
-            backgroundColor: neu.royal,
+            backgroundColor: _neu.royal,
           }}
         />
       )}
@@ -51,6 +53,7 @@ export function CircleIcon({
   size?: number
   color?: string
 }) {
+  const _neu = useNeu()
   const r = size / 2
   return (
     <View
@@ -58,7 +61,7 @@ export function CircleIcon({
         width: size,
         height: size,
         borderRadius: r,
-        backgroundColor: (color || neu.royal) + "12",
+        backgroundColor: (color || _neu.royal) + "12",
         alignItems: "center",
         justifyContent: "center",
       }}

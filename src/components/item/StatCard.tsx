@@ -1,10 +1,11 @@
 import { View, Text } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 import type { Stat } from "../../sample"
 
 export default function StatCard({ item }: { item: Stat }) {
+  const neu = useNeu()
   return (
     <View style={{ flex: 1, marginHorizontal: 5 }}>
       <Card radius={neu.radius.md}>

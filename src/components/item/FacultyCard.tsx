@@ -2,10 +2,11 @@ import { View, Text, Pressable } from "react-native"
 import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 import type { Faculty } from "../../sample"
 
 export default function FacultyCard({ item }: { item: Faculty }) {
+  const neu = useNeu()
   const router = useRouter()
   return (
     <Pressable className="active:opacity-90 mb-3" onPress={() => router.push("/modal/faculty?id=" + item.id as any)}>

@@ -2,10 +2,11 @@ import { View, Text, Pressable } from "react-native"
 import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 import type { UniversityEvent } from "../../sample"
 
 export default function EventCard({ item }: { item: UniversityEvent }) {
+  const neu = useNeu()
   return (
     <Card>
       <View className="flex-row">

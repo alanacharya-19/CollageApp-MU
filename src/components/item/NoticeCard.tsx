@@ -2,7 +2,7 @@ import { View, Text, Pressable } from "react-native"
 import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 import type { Notice } from "../../sample"
 
 const categoryMeta: Record<string, { label: string }> = {
@@ -14,6 +14,7 @@ const categoryMeta: Record<string, { label: string }> = {
 }
 
 export default function NoticeCard({ item }: { item: Notice }) {
+  const neu = useNeu()
   const router = useRouter()
   const meta = categoryMeta[item.category] || categoryMeta.general
 

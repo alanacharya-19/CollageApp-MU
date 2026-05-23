@@ -1,13 +1,15 @@
 import { useState } from "react"
 import { ScrollView, View, Text, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
-import { neu, Card, CircleIcon } from "../../components/ui"
+import { Card, CircleIcon } from "../../components/ui"
+import { useNeu } from "../../context/ThemeContext"
 import { FacultyCard } from "../../components/item"
 import { faculty } from "../../sample"
 
 const departments = ["All", "Computer Science", "Mathematics", "Physics", "Electronics", "Mechanical", "Chemistry", "Commerce"] as const
 
 export default function FacultyScreen() {
+  const neu = useNeu()
   const [activeDept, setActiveDept] = useState("All")
 
   const filtered = faculty.filter((f) => {

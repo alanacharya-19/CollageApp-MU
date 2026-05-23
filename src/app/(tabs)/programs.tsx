@@ -1,13 +1,15 @@
 import { useState } from "react"
 import { ScrollView, View, Text, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
-import { neu, Card, CircleIcon } from "../../components/ui"
+import { Card, CircleIcon } from "../../components/ui"
+import { useNeu } from "../../context/ThemeContext"
 import { ProgramCard } from "../../components/item"
 import { programs } from "../../sample"
 
 const filters = ["All", "Engineering", "Science", "Commerce", "Management", "Research"] as const
 
 export default function ProgramsScreen() {
+  const neu = useNeu()
   const [activeFilter, setActiveFilter] = useState("All")
 
   const filtered = programs.filter((p) => {

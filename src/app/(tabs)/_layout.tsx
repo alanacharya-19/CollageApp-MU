@@ -1,9 +1,51 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { View } from "react-native";
-import { neu } from "../../components/ui";
+import { useNeu } from "../../context/ThemeContext";
 
 export default function Layout() {
+  const neu = useNeu()
+
+  function TabIcon({
+    focused,
+    activeName,
+    inactiveName,
+  }: {
+    focused: boolean;
+    activeName: React.ComponentProps<typeof Ionicons>["name"];
+    inactiveName: React.ComponentProps<typeof Ionicons>["name"];
+  }) {
+    if (focused) {
+      return (
+        <View
+          style={{
+            width: 44,
+            height: 36,
+            borderRadius: 18,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: neu.royal + "18",
+          }}
+        >
+          <Ionicons name={activeName} size={20} color={neu.royal} />
+        </View>
+      );
+    }
+    return (
+      <View
+        style={{
+          width: 44,
+          height: 36,
+          borderRadius: 18,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Ionicons name={inactiveName} size={20} color={neu.textLight} />
+      </View>
+    );
+  }
+
   return (
     <Tabs
       screenOptions={{
@@ -95,45 +137,5 @@ export default function Layout() {
         }}
       />
     </Tabs>
-  );
-}
-
-function TabIcon({
-  focused,
-  activeName,
-  inactiveName,
-}: {
-  focused: boolean;
-  activeName: React.ComponentProps<typeof Ionicons>["name"];
-  inactiveName: React.ComponentProps<typeof Ionicons>["name"];
-}) {
-  if (focused) {
-    return (
-      <View
-        style={{
-          width: 44,
-          height: 36,
-          borderRadius: 18,
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: neu.royal + "18",
-        }}
-      >
-        <Ionicons name={activeName} size={20} color={neu.royal} />
-      </View>
-    );
-  }
-  return (
-    <View
-      style={{
-        width: 44,
-        height: 36,
-        borderRadius: 18,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Ionicons name={inactiveName} size={20} color={neu.textLight} />
-    </View>
   );
 }

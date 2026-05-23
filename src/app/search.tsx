@@ -2,12 +2,14 @@ import { useState } from "react"
 import { View, Text, TextInput, ScrollView, Pressable } from "react-native"
 import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
-import { neu, Card, CircleIcon } from "../components/ui"
+import { Card, CircleIcon } from "../components/ui"
+import { useNeu } from "../context/ThemeContext"
 import { notices, events, programs, faculty } from "../sample"
 
 type Result = { id: string; title: string; subtitle: string; icon: React.ComponentProps<typeof Ionicons>["name"]; route: string; color: string }
 
 export default function SearchScreen() {
+  const neu = useNeu()
   const router = useRouter()
   const [query, setQuery] = useState("")
 

@@ -2,9 +2,10 @@ import { View, Text, Pressable } from "react-native"
 import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { CircleIcon } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 
 export default function HeaderHome() {
+  const neu = useNeu()
   const router = useRouter()
 
   return (

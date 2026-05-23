@@ -1,6 +1,6 @@
 import { Text, Pressable } from "react-native"
 import { CircleIcon } from "../ui"
-import { neu } from "../ui"
+import { useNeu } from "../../context/ThemeContext"
 
 interface Props {
   label: string
@@ -9,6 +9,7 @@ interface Props {
 }
 
 export default function EventFilterChip({ label, active, onPress }: Props) {
+  const neu = useNeu()
   if (active) {
     return (
       <Pressable onPress={onPress} className="mr-3 active:opacity-80">
