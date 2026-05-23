@@ -7,7 +7,9 @@ import type { UniversityEvent } from "../../sample"
 
 export default function EventCard({ item }: { item: UniversityEvent }) {
   const neu = useNeu()
+  const router = useRouter()
   return (
+    <Pressable onPress={() => router.push("/modal/event?id=" + item.id as any)}>
     <Card>
       <View className="flex-row">
         <View className="w-[72px] items-center justify-center py-1 rounded-xl" style={{ backgroundColor: neu.royal + "08" }}>
@@ -32,5 +34,6 @@ export default function EventCard({ item }: { item: UniversityEvent }) {
         </View>
       </View>
     </Card>
+    </Pressable>
   )
 }

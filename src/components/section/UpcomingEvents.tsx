@@ -1,4 +1,5 @@
 import { View, Text, Pressable } from "react-native"
+import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { CircleIcon } from "../ui"
 import { useNeu } from "../../context/ThemeContext"
@@ -7,6 +8,7 @@ import { EventCard } from "../item"
 
 export default function UpcomingEvents() {
   const neu = useNeu()
+  const router = useRouter()
   return (
     <View className="mt-6 px-5">
       <View className="flex-row items-center justify-between mb-3">
@@ -16,7 +18,7 @@ export default function UpcomingEvents() {
           </CircleIcon>
           <Text className="text-base font-bold ml-2" style={{ color: neu.text }}>Upcoming Events</Text>
         </View>
-        <Pressable className="flex-row items-center">
+        <Pressable className="flex-row items-center" onPress={() => router.push("/(tabs)/event" as any)}>
           <Text className="text-xs font-bold" style={{ color: neu.royal }}>See all</Text>
           <Ionicons name="chevron-forward" size={12} color={neu.royal} />
         </Pressable>

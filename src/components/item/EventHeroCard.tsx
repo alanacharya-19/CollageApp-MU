@@ -1,4 +1,5 @@
-import { View, Text } from "react-native"
+import { View, Text, Pressable } from "react-native"
+import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
 import { useNeu } from "../../context/ThemeContext"
@@ -6,7 +7,9 @@ import type { UniversityEvent } from "../../sample"
 
 export default function EventHeroCard({ item }: { item: UniversityEvent }) {
   const neu = useNeu()
+  const router = useRouter()
   return (
+    <Pressable onPress={() => router.push("/modal/event?id=" + item.id as any)}>
     <Card elevated>
       <View className="flex-row">
         <View className="w-20 items-center justify-center py-2 rounded-xl" style={{ backgroundColor: neu.royal + "08" }}>
@@ -40,5 +43,6 @@ export default function EventHeroCard({ item }: { item: UniversityEvent }) {
         </View>
       </View>
     </Card>
+    </Pressable>
   )
 }

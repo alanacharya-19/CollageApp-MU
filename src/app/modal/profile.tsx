@@ -1,12 +1,12 @@
-import { ScrollView, View, Text, Pressable } from "react-native"
+import { ScrollView, View, Text, Pressable, Alert } from "react-native"
 import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card, CircleIcon } from "../../components/ui"
-import { useNeu } from "../../context/ThemeContext"
+import { useTheme } from "../../context/ThemeContext"
 import { userProfile } from "../../sample"
 
 export default function ProfileScreen() {
-  const neu = useNeu()
+  const { neu, isDark, toggle } = useTheme()
   const router = useRouter()
 
   const menuItems = [
@@ -15,9 +15,22 @@ export default function ProfileScreen() {
     { icon: "checkbox-outline" as const, label: "Attendance Report", color: neu.success, route: "" },
     { icon: "stats-chart-outline" as const, label: "Academic Report", color: "#8B5CF6", route: "" },
     { icon: "card-outline" as const, label: "Fee Details", color: neu.warning, route: "" },
-    { icon: "moon-outline" as const, label: "Dark Mode", color: neu.midnight, route: "" },
+    { icon: isDark ? "sunny-outline" as const : "moon-outline" as const, label: isDark ? "Light Mode" : "Dark Mode", color: neu.midnight, route: "" },
     { icon: "log-out-outline" as const, label: "Sign Out", color: neu.error, route: "" },
   ]
+
+  const handlePress = (item: typeof menuItems[number]) => {
+    if (item.label === "Dark Mode" || item.label === "Light Mode") {
+      toggle()
+    } else if (item.label === "Sign Out") {
+      Alert.alert("Sign Out", "Are you sure you want to sign out?", [
+        { text: "Cancel", style: "cancel" },
+        { text: "Sign Out", style: "destructive" },
+      ])
+    } else if (item.route) {
+      router.push(item.route as any)
+    }
+  }
 
   return (
     <View className="flex-1" style={{ backgroundColor: neu.bg }}>
@@ -65,7 +78,7 @@ export default function ProfileScreen() {
 
         <Card radius={neu.radius.lg} style={{ marginTop: 16, marginBottom: 32 }}>
           {menuItems.map((item, i) => (
-            <Pressable key={item.label} onPress={() => item.route ? router.push(item.route as any) : null} className={`flex-row items-center py-3.5 ${i < menuItems.length - 1 ? "" : ""}`} style={{ borderBottomWidth: i < menuItems.length - 1 ? 1 : 0, borderBottomColor: neu.border }}>
+            <Pressable key={item.label} onPress={() => handlePress(item)} className={`flex-row items-center py-3.5 ${i < menuItems.length - 1 ? "" : ""}`} style={{ borderBottomWidth: i < menuItems.length - 1 ? 1 : 0, borderBottomColor: neu.border }}>
               <CircleIcon size={34} color={item.color}>
                 <Ionicons name={item.icon} size={16} color={item.color} />
               </CircleIcon>

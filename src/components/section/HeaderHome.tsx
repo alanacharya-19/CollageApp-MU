@@ -25,7 +25,7 @@ export default function HeaderHome() {
             <Ionicons name="search-outline" size={20} color="#FFFFFF" />
           </CircleIcon>
         </Pressable>
-        <Pressable>
+        <Pressable onPress={() => router.push("/(tabs)/notices" as any)}>
           <CircleIcon size={40} color="#FFFFFF">
             <View className="relative">
               <Ionicons name="notifications-outline" size={20} color="#FFFFFF" />

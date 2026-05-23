@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { ScrollView, View, Text, Pressable } from "react-native"
+import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card, CircleIcon } from "../../components/ui"
 import { useNeu } from "../../context/ThemeContext"
@@ -10,6 +11,7 @@ const filters = ["All", "Examination", "Academic", "Administrative", "General"] 
 
 export default function NoticesScreen() {
   const neu = useNeu()
+  const router = useRouter()
   const [activeFilter, setActiveFilter] = useState("All")
 
   const filtered = notices.filter((n) => {
@@ -37,7 +39,7 @@ export default function NoticesScreen() {
               </View>
             </View>
             <View className="flex-row items-center gap-3">
-              <Pressable>
+              <Pressable onPress={() => router.push("/search" as any)}>
                 <CircleIcon size={40} color="#FFFFFF">
                   <Ionicons name="search-outline" size={20} color="#FFFFFF" />
                 </CircleIcon>

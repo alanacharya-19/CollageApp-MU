@@ -56,7 +56,7 @@ export default function SearchScreen() {
           <Text className="text-xs font-semibold mb-3" style={{ color: neu.textLight }}>{filtered.length} result{filtered.length !== 1 ? "s" : ""}</Text>
         )}
         {filtered.map((r) => (
-          <Pressable key={r.id + r.title} className="mb-2 active:opacity-80">
+          <Pressable key={r.id + r.title} className="mb-2 active:opacity-80" onPress={() => router.push(r.route as any)}>
             <Card radius={neu.radius.md}>
               <View className="flex-row items-center">
                 <CircleIcon size={40} color={r.color}>

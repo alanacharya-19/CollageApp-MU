@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { ScrollView, View, Text, Pressable } from "react-native"
+import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card, CircleIcon } from "../../components/ui"
 import { useNeu } from "../../context/ThemeContext"
@@ -20,6 +21,7 @@ const typeMap: Record<string, UniversityEvent["type"]> = {
 
 export default function EventScreen() {
   const neu = useNeu()
+  const router = useRouter()
   const [activeFilter, setActiveFilter] = useState("All")
 
   const featured = events.find((e) => e.featured)
@@ -39,7 +41,7 @@ export default function EventScreen() {
               <Text className="text-2xl font-extrabold -mt-0.5 text-white">Discover Events</Text>
             </View>
             <View className="flex-row items-center gap-3">
-              <Pressable>
+              <Pressable onPress={() => router.push("/search" as any)}>
                 <CircleIcon size={40} color="#FFFFFF">
                   <Ionicons name="search-outline" size={20} color="#FFFFFF" />
                 </CircleIcon>
