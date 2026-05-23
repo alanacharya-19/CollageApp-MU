@@ -1,12 +1,15 @@
 import { View, Text, Pressable } from "react-native"
+import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { CircleIcon } from "../ui"
 import { neu } from "../ui"
 
 export default function HeaderHome() {
+  const router = useRouter()
+
   return (
     <View className="flex-row items-center justify-between px-6 pt-14 pb-4" style={{ backgroundColor: neu.midnight }}>
-      <View className="flex-row items-center">
+      <Pressable className="flex-row items-center" onPress={() => router.push("/modal/profile" as any)}>
         <CircleIcon size={44} color={neu.cyan}>
           <Ionicons name="person" size={22} color={neu.cyan} />
         </CircleIcon>
@@ -14,11 +17,11 @@ export default function HeaderHome() {
           <Text className="text-xs font-medium" style={{ color: neu.textLight }}>Welcome back,</Text>
           <Text className="text-lg font-bold -mt-1" style={{ color: "#FFFFFF" }}>Alex Johnson</Text>
         </View>
-      </View>
+      </Pressable>
       <View className="flex-row items-center gap-3">
-        <Pressable>
+        <Pressable onPress={() => router.push("/search" as any)}>
           <CircleIcon size={40} color="#FFFFFF">
-            <Ionicons name="scan-outline" size={20} color="#FFFFFF" />
+            <Ionicons name="search-outline" size={20} color="#FFFFFF" />
           </CircleIcon>
         </Pressable>
         <Pressable>

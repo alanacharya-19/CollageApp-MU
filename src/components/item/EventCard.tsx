@@ -1,4 +1,5 @@
-import { View, Text } from "react-native"
+import { View, Text, Pressable } from "react-native"
+import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
 import { neu } from "../ui"

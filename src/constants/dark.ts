@@ -1,0 +1,15 @@
+export const colors = {
+  midnight: "#020617",
+  royal: "#3B82F6",
+  cyan: "#22D3EE",
+  bg: "#020617",
+  card: "#0F172A",
+  text: "#F8FAFC",
+  textMuted: "#94A3B8",
+  textLight: "#64748B",
+  border: "#1E293B",
+  inputBorder: "#334155",
+  success: "#22C55E",
+  warning: "#F59E0B",
+  error: "#EF4444",
+} as const

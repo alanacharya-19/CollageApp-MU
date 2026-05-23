@@ -1,3 +1,5 @@
+export type ColorScheme = Record<string, string>
+
 export const colors = {
   midnight: "#0F172A",
   royal: "#2563EB",

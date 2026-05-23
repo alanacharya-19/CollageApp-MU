@@ -1,1 +1,1 @@
-export { colors } from "./colors"
+export { colors, type ColorScheme } from "./colors"

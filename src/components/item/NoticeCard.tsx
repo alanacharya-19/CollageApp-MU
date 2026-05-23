@@ -1,4 +1,5 @@
 import { View, Text, Pressable } from "react-native"
+import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
 import { neu } from "../ui"
@@ -13,10 +14,11 @@ const categoryMeta: Record<string, { label: string }> = {
 }
 
 export default function NoticeCard({ item }: { item: Notice }) {
+  const router = useRouter()
   const meta = categoryMeta[item.category] || categoryMeta.general
 
   return (
-    <Pressable className="active:opacity-90">
+    <Pressable className="active:opacity-90" onPress={() => router.push("/modal/notice?id=" + item.id as any)}>
       <Card>
         <View className="flex-row items-start">
           <View className="w-10 h-10 rounded-2xl items-center justify-center" style={{ backgroundColor: neu.royal + "08" }}>
