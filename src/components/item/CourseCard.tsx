@@ -1,4 +1,5 @@
-import { View, Text } from "react-native"
+import { View, Text, Pressable } from "react-native"
+import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
 import { useNeu } from "../../context/ThemeContext"
@@ -6,7 +7,9 @@ import type { Course } from "../../sample"
 
 export default function CourseCard({ item }: { item: Course }) {
   const neu = useNeu()
+  const router = useRouter()
   return (
+    <Pressable onPress={() => router.push("/modal/profile" as any)}>
     <Card>
       <View className="flex-row items-center justify-between mb-3">
         <View className="flex-row items-center">
@@ -36,5 +39,6 @@ export default function CourseCard({ item }: { item: Course }) {
         </View>
       </View>
     </Card>
+    </Pressable>
   )
 }

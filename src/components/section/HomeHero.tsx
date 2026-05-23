@@ -1,10 +1,12 @@
-import { View, Text, TextInput } from "react-native"
+import { View, Text, Pressable } from "react-native"
+import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
 import { useNeu } from "../../context/ThemeContext"
 
 export default function HomeHero() {
   const neu = useNeu()
+  const router = useRouter()
   return (
     <View className="px-5 mt-4">
       <Card elevated radius={neu.radius.xl}>
@@ -22,18 +24,15 @@ export default function HomeHero() {
           Excellence in education, research, and innovation. Ranked among top 50 universities nationally.
         </Text>
 
-        <View className="flex-row items-center rounded-2xl px-4 py-3" style={{ backgroundColor: neu.bg, borderWidth: 1, borderColor: neu.border }}>
+        <Pressable className="flex-row items-center rounded-2xl px-4 py-3" style={{ backgroundColor: neu.bg, borderWidth: 1, borderColor: neu.border }} onPress={() => router.push("/search" as any)}>
           <Ionicons name="search" size={18} color={neu.textLight} />
-          <TextInput
-            placeholder="Search courses, events, faculty..."
-            placeholderTextColor={neu.textLight}
-            className="flex-1 ml-2.5 text-sm"
-            style={{ color: neu.text, outline: "none" }}
-          />
+          <View className="flex-1 ml-2.5">
+            <Text className="text-sm" style={{ color: neu.textLight }}>Search courses, events, faculty...</Text>
+          </View>
           <View className="w-7 h-7 rounded-full items-center justify-center" style={{ backgroundColor: neu.royal }}>
             <Ionicons name="options" size={14} color="#FFFFFF" />
           </View>
-        </View>
+        </Pressable>
 
         <View className="flex-row justify-between mt-5 pt-5" style={{ borderTopWidth: 1, borderTopColor: neu.border }}>
           <View className="items-center">
