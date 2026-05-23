@@ -1,12 +1,14 @@
 import { View, Text, Pressable } from "react-native"
+import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import { Card } from "../ui"
 import { neu } from "../ui"
 import type { Faculty } from "../../sample"
 
 export default function FacultyCard({ item }: { item: Faculty }) {
+  const router = useRouter()
   return (
-    <Pressable className="active:opacity-90 mb-3">
+    <Pressable className="active:opacity-90 mb-3" onPress={() => router.push("/modal/faculty?id=" + item.id as any)}>
       <Card>
         <View className="flex-row items-center">
           <View className="w-14 h-14 rounded-full items-center justify-center" style={{ backgroundColor: neu.royal + "08" }}>

@@ -6,6 +6,8 @@ export default function ModalLayout() {
       <Stack.Screen name="notice" />
       <Stack.Screen name="event" />
       <Stack.Screen name="profile" />
+      <Stack.Screen name="program" />
+      <Stack.Screen name="faculty" />
     </Stack>
   )
 }

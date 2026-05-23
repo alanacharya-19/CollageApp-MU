@@ -8,13 +8,13 @@ export default function ProfileScreen() {
   const router = useRouter()
 
   const menuItems = [
-    { icon: "book-outline" as const, label: "My Courses", color: neu.royal },
-    { icon: "calendar-outline" as const, label: "Timetable", color: neu.cyan },
-    { icon: "checkbox-outline" as const, label: "Attendance Report", color: neu.success },
-    { icon: "stats-chart-outline" as const, label: "Academic Report", color: "#8B5CF6" },
-    { icon: "card-outline" as const, label: "Fee Details", color: neu.warning },
-    { icon: "moon-outline" as const, label: "Dark Mode", color: neu.midnight },
-    { icon: "log-out-outline" as const, label: "Sign Out", color: neu.error },
+    { icon: "book-outline" as const, label: "My Courses", color: neu.royal, route: "/(tabs)/home" },
+    { icon: "calendar-outline" as const, label: "Timetable", color: neu.cyan, route: "" },
+    { icon: "checkbox-outline" as const, label: "Attendance Report", color: neu.success, route: "" },
+    { icon: "stats-chart-outline" as const, label: "Academic Report", color: "#8B5CF6", route: "" },
+    { icon: "card-outline" as const, label: "Fee Details", color: neu.warning, route: "" },
+    { icon: "moon-outline" as const, label: "Dark Mode", color: neu.midnight, route: "" },
+    { icon: "log-out-outline" as const, label: "Sign Out", color: neu.error, route: "" },
   ]
 
   return (
@@ -63,7 +63,7 @@ export default function ProfileScreen() {
 
         <Card radius={neu.radius.lg} style={{ marginTop: 16, marginBottom: 32 }}>
           {menuItems.map((item, i) => (
-            <Pressable key={item.label} className={`flex-row items-center py-3.5 ${i < menuItems.length - 1 ? "" : ""}`} style={{ borderBottomWidth: i < menuItems.length - 1 ? 1 : 0, borderBottomColor: neu.border }}>
+            <Pressable key={item.label} onPress={() => item.route ? router.push(item.route as any) : null} className={`flex-row items-center py-3.5 ${i < menuItems.length - 1 ? "" : ""}`} style={{ borderBottomWidth: i < menuItems.length - 1 ? 1 : 0, borderBottomColor: neu.border }}>
               <CircleIcon size={34} color={item.color}>
                 <Ionicons name={item.icon} size={16} color={item.color} />
               </CircleIcon>
