@@ -8,9 +8,10 @@ interface Props {
   radius?: number
   elevated?: boolean
   noShadow?: boolean
+  accent?: boolean
 }
 
-export default function Card({ children, style, radius = neu.radius.lg, elevated = false, noShadow = false }: Props) {
+export default function Card({ children, style, radius = neu.radius.lg, elevated = false, noShadow = false, accent = false }: Props) {
   return (
     <View
       style={[
@@ -18,11 +19,24 @@ export default function Card({ children, style, radius = neu.radius.lg, elevated
           backgroundColor: neu.card,
           borderRadius: radius,
           padding: 16,
+          overflow: "hidden",
         },
         noShadow ? neu.shadow.none : elevated ? neu.shadow.elevated : neu.shadow.card,
         style,
       ]}
     >
+      {accent && (
+        <View
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 4,
+            backgroundColor: neu.royal,
+          }}
+        />
+      )}
       {children}
     </View>
   )

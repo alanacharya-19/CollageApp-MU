@@ -9,21 +9,19 @@ export default function Layout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: neu.midnight,
-          borderTopWidth: 1,
-          borderTopColor: "rgba(255,255,255,0.08)",
+          backgroundColor: "#FFFFFF",
+          borderTopWidth: 0,
           height: 80,
           paddingBottom: 6,
-
           paddingTop: 6,
           elevation: 8,
-          shadowColor: "#000",
+          shadowColor: neu.royal,
           shadowOffset: { width: 0, height: -4 },
-          shadowOpacity: 0.15,
+          shadowOpacity: 0.08,
           shadowRadius: 12,
         },
         tabBarActiveTintColor: "#FFFFFF",
-        tabBarInactiveTintColor: "rgba(255,255,255,0.4)",
+        tabBarInactiveTintColor: neu.textLight,
         tabBarLabelStyle: {
           fontSize: 10,
           fontWeight: "700",
@@ -113,29 +111,29 @@ function TabIcon({
     return (
       <View
         style={{
-          width: 36,
+          width: 44,
           height: 36,
           borderRadius: 18,
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "rgba(255,255,255,0.12)",
+          backgroundColor: neu.royal + "18",
         }}
       >
-        <Ionicons name={activeName} size={20} color={neu.cyan} />
+        <Ionicons name={activeName} size={20} color={neu.royal} />
       </View>
     );
   }
   return (
     <View
       style={{
-        width: 36,
+        width: 44,
         height: 36,
         borderRadius: 18,
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <Ionicons name={inactiveName} size={20} color="rgba(255,255,255,0.4)" />
+      <Ionicons name={inactiveName} size={20} color={neu.textLight} />
     </View>
   );
 }
